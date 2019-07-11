@@ -1,0 +1,57 @@
+diff --git a/core/core-configuration-layer.el b/core/core-configuration-layer.el
+index 740b700cf..e3100bf5a 100644
+--- a/core/core-configuration-layer.el
++++ b/core/core-configuration-layer.el
+@@ -450,7 +450,7 @@ cache folder.")
+ (defun configuration-layer//configure-quelpa ()
+   "Configure `quelpa' package."
+   (setq quelpa-verbose init-file-debug
+-        quelpa-dir (concat spacemacs-cache-directory "quelpa/")
++        quelpa-dir (concat spacemacs-start-directory "quelpa/")
+         quelpa-build-dir (expand-file-name "build" quelpa-dir)
+         quelpa-persistent-cache-file (expand-file-name "cache" quelpa-dir)
+         quelpa-update-melpa-p nil)
+diff --git a/core/core-env.el b/core/core-env.el
+index d4c90e2f5..19800c3ba 100644
+--- a/core/core-env.el
++++ b/core/core-env.el
+@@ -13,7 +13,7 @@
+ (require 'load-env-vars)
+ 
+ (defvar spacemacs-env-vars-file
+-  (concat (or dotspacemacs-directory user-home-directory) ".spacemacs.env")
++  (concat spacemacs-cache-directory ".spacemacs.env")
+   "Absolute path to the env file where environment variables are set.")
+ 
+ (defvar spacemacs-ignored-environment-variables
+diff --git a/core/core-load-paths.el b/core/core-load-paths.el
+index 718b27ce4..ec3b29284 100644
+--- a/core/core-load-paths.el
++++ b/core/core-load-paths.el
+@@ -45,7 +45,7 @@
+   (expand-file-name (concat spacemacs-banner-directory "img/heart.png"))
+   "Purple heart emoji.")
+ (defconst spacemacs-cache-directory
+-  (expand-file-name (concat user-emacs-directory ".cache/"))
++  (expand-file-name (or (expand-file-name (getenv "SPACEMACS_CACHE")) (concat user-emacs-directory ".cache/")))
+   "Spacemacs storage area for persistent files")
+ (defconst spacemacs-auto-save-directory
+   (expand-file-name (concat spacemacs-cache-directory "auto-save/"))
+@@ -83,4 +83,3 @@
+ ;; themes
+ (add-to-list 'custom-theme-load-path (concat spacemacs-core-directory
+                                              "libs/spacemacs-theme/"))
+-
+diff --git a/layers/+filetree/treemacs/packages.el b/layers/+filetree/treemacs/packages.el
+index 1472b8a73..89a0db847 100644
+--- a/layers/+filetree/treemacs/packages.el
++++ b/layers/+filetree/treemacs/packages.el
+@@ -42,6 +42,8 @@
+             treemacs-show-hidden-files t
+             treemacs-never-persist nil
+             treemacs-goto-tag-strategy 'refetch-index
++	    treemacs-persist-file (concat spacemacs-cache-directory "treemacs-persist")
++	    treemacs-last-error-persist-file (concat spacemacs-cache-directory "treemacs-persist-at-last-error")
+             treemacs-collapse-dirs treemacs-use-collapsed-directories)
+       (add-hook 'treemacs-mode-hook
+                 #'spacemacs/treemacs-setup-width-lock)

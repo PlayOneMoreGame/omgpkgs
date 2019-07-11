@@ -1,0 +1,6 @@
+# Disable specific rules that prettier-js breaks
+linters:
+  LeadingZero:
+    enabled: false
+  StringQuotes:
+    enabled: false
