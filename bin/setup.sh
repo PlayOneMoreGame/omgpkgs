@@ -50,22 +50,44 @@ function source_nix {
 
 function setup_debian {
   sudo apt-get update
-  sudo apt-install -y curl
+  sudo apt-get install -y curl
 }
 
 function setup_linux {
-  if ! command -v curl &> /dev/null ; then
-    case "$OS" in
-      ubuntu*|debian*)
-        setup-debian
-        ;;
-      *)
-        echo "Unsupported Linux distribution: $OS"
-        echo "Manually install 'curl' and ensure it is on your path and try again."
-        exit 1
-        ;;
-      esac
+  if command -v curl &> /dev/null ; then
+    return 0
   fi
+  local OS=""
+  if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    # shellcheck disable=1091
+    . /etc/os-release
+    OS=$NAME
+  elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+  elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    # shellcheck disable=1091
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+  elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+  else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+  fi
+  case "${OS,,}" in
+    ubuntu*|debian*)
+      setup_debian
+      ;;
+    *)
+      echo "Unsupported Linux distribution: $OS"
+      echo "Manually install 'curl' and ensure it is on your path and try again."
+      exit 1
+      ;;
+  esac
 }
 
 # Perform additional OS-specific setup
@@ -74,7 +96,7 @@ case "$OSTYPE" in
     ;;
 
   linux*)
-    setup-linux
+    setup_linux
     ;;
 
   msys*|cygwin*)
@@ -88,7 +110,7 @@ esac
 
 if ! nix_installed; then
   echo "Installing Nix..."
-  curl https://nixos.org/nix/install | sh
+  curl -fsSL https://nixos.org/nix/install | sh
 fi
 
 source_nix
