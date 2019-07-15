@@ -18,12 +18,11 @@ Until this repository is publicly hosted, you'll need to clone it and run the se
     ```
 
 1. Run the setup script to prepare your host machine
-   ```
-   $ bin/setup.sh
-   ```
+    ```
+    $ bin/setup.sh
+    ```
 
 In the future when this repository is opened to the public:
-
     ```
     $ curl -fsSL https://raw.githubusercontent.com/PlayOneMoreGame/omgpkgs/master/bin/setup.sh | bash
     ```
@@ -66,9 +65,7 @@ This repository also contains a `bin/setup.sh` script which installs the base de
 
 You'll need to manually install Vagrant and VMWare Fusion. After installation, run the following script:
 
-    ```
     $ bin/test-setup
-    ```
 
 This will start a virtual machine for all supported platforms and distributions, run the setup script, test the virtual machine, and then destroy all of the virtual machines.
 
