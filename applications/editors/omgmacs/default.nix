@@ -8,8 +8,6 @@ let
   emacsWithPackagesFn = (pkgs.emacsPackagesNgGen omge).emacsWithPackages;
   emacsWithPackages = emacsWithPackagesFn (epkgs: (with epkgs.melpaStablePackages; [
     evil-escape
-    # jw todo: this is located in the spacemacs directory itself
-    # evil-unimpaired
   ]) ++ (with epkgs.melpaPackages; [
     a
     ac-ispell
@@ -374,6 +372,14 @@ stdenvNoCC.mkDerivation {
     mkdir -p $out/bin
 
     makeWrapper ${emacsWithPackages}/bin/emacs $TEMPDIR/omge \
+      --prefix PATH : ${with pkgs; lib.makeBinPath [
+        nodePackages.prettier
+        nodePackages.js-beautify
+        git
+        scss-lint
+        python3Packages.importmagic
+        python3Packages.yapf
+      ]} \
       --set REAL_HOME "\$HOME" \
       --set-default SPACEMACS_CACHE "\$HOME/.omg.d/.cache/" \
       --set XDG_CONFIG_HOME "\$HOME/.omg.d/.config" \
