@@ -1,0 +1,7 @@
+steps:
+  - label: "build"
+    command: "nix-build"
+    branches: "!master"
+  - label: "build-push"
+    command: "nix-build | cachix push omg"
+    branches: "master"
