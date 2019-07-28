@@ -162,7 +162,7 @@ loaded. If you are unsure, you should try in setting variables here, first."
   ;; Add configuration here
   )
 
-(defun omg/load-user-config ()
+(defun omg/user-config ()
   "Configuration function for user code.
 This function is called at the end of 'dotspacemacs/user-config' which is called
 at the very end of Spacemacs initialization after layers configuration.
