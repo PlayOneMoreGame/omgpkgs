@@ -163,7 +163,7 @@ This function is mostly useful for variables that need to be set before packages
 loaded. If you are unsure, you should try in setting variables here, first."
   ;; Add configuration here
   ;; (setq-default
-  ;;   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+  ;;   ;; Default font, or prioritized list of fonts. 'powerline-scale' allows to
   ;;   ;; quickly tweak the mode-line size to make separators look not too crappy.
   ;;   dotspacemacs-default-font '("Source Code Pro"
   ;;                                :size 28
