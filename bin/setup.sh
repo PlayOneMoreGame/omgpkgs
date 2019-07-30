@@ -125,12 +125,14 @@ mkdir -p "$OMG_CONFIG_DIR"
 
 if [ -f "$HOME/.bashrc" ]; then
   if ! grep 'eval "$(direnv hook bash)"' "$HOME/.bashrc" &> /dev/null; then
+    echo "" >> "$HOME/.bashrc"
     echo "eval \"\$(direnv hook bash)\"" >> "$HOME/.bashrc"
   fi
 fi
 
 if [ -f "$HOME/.zshrc" ]; then
   if ! grep 'eval "$(direnv hook zsh)"' "$HOME/.zshrc" &> /dev/null; then
+    echo "" >> "$HOME/.zshrc"
     echo "eval \"\$(direnv hook zsh)\"" >> "$HOME/.zshrc"
   fi
 fi
@@ -157,7 +159,7 @@ loaded. If you are unsure, you should try in setting variables here, first."
   ;;                                :size 28
   ;;                                :weight normal
   ;;                                :width normal
-  ;;                                :powerline-scale 1.1)))
+  ;;                                :powerline-scale 1.1))
   )
 
 (defun omg/user-config ()
