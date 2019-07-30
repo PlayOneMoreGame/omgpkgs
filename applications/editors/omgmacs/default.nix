@@ -381,10 +381,10 @@ stdenvNoCC.mkDerivation {
         python3Packages.yapf
       ]} \
       --set REAL_HOME "\$HOME" \
-      --set-default SPACEMACS_CACHE "\$HOME/.omg.d/.cache/" \
-      --set XDG_CONFIG_HOME "\$HOME/.omg.d/.config" \
+      --set-default SPACEMACS_CACHE "\$HOME/.cache/omgmacs/.cache/" \
+      --set XDG_CONFIG_HOME "\$HOME/.config/omg" \
       --set XDG_CACHE_HOME "\$SPACEMACS_CACHE" \
-      --set XDG_DATA_HOME "\$HOME/.omg.d/.local/share" \
+      --set XDG_DATA_HOME "\$HOME/.cache/omgmacs/.local/share" \
       --set HOME "$out/lib" \
       --suffix EMACSLOADPATH ":" "$out/lib/.emacs.d/layers/+spacemacs/spacemacs-evil/local/evil-unimpaired:" \
       --add-flags --no-package-sync

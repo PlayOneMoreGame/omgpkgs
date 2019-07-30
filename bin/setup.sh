@@ -11,7 +11,9 @@
 set -euo pipefail
 
 NIXSH="$HOME/.nix-profile/etc/profile.d/nix.sh"
-OMGMACS_CONFIG="$HOME/.omg.d/user-config.el"
+OMG_CONFIG_DIR="$HOME/.config/omg"
+OMGRC="$OMG_CONFIG_DIR/.omgrc"
+OMGMACS_CONFIG="$OMG_CONFIG_DIR/user-config.el"
 OS=""
 
 if [ -f /etc/os-release ]; then
@@ -118,13 +120,13 @@ source_nix
 if ! command direnv &> /dev/null; then
   echo "Installing direnv..."
   nix-env -i direnv
-  # omg todo: setup an omgpkgs channel and binary cache
-  # nix-env -i omgmacs
 fi
 
-if [ ! -f "$HOME/.omgrc" ]; then
-  echo "Writing '$HOME/.omgrc'..."
-  cat << EOF >> "$HOME/.omgrc"
+mkdir -p "$OMG_CONFIG_DIR"
+
+if [ ! -f "$OMGRC" ]; then
+  echo "Writing '$OMGRC'..."
+  cat << EOF >> "$OMGRC"
 # Load direnv
 case "\$SHELL" in
   */bash)
@@ -140,8 +142,8 @@ EOF
 fi
 
 if [ -f "$HOME/.profile" ]; then
-  if ! grep "source \"$HOME/.omgrc\"" "$HOME/.profile" &> /dev/null; then
-    echo "source \"$HOME/.omgrc\"" >> "$HOME/.profile"
+  if ! grep "source \"$HOME/.config/omg/.omgrc\"" "$HOME/.profile" &> /dev/null; then
+    echo "source \"$HOME/.config/omg/.omgrc\"" >> "$HOME/.profile"
   fi
 fi
 
@@ -150,7 +152,7 @@ if [ ! -f "$OMGMACS_CONFIG" ]; then
   cat << EOF >> "$OMGMACS_CONFIG"
 ;; -*- mode: emacs-lisp -*-
 ;; This file is loaded by OMGmacs at startup.
-;; It must be stored at '\$HOME/.omg.d/user-config.el'.
+;; It must be stored at '\$HOME/.config/omg/user-config.el'.
 
 (defun omg/user-init ()
   "Initialization function for user code.
@@ -181,15 +183,10 @@ echo "***************"
 echo "Setup complete!"
 echo "***************"
 echo ""
-echo "Your OMG shell environment can be customized by editing '$HOME/.omgrc'."
-echo "To inject the OMG environment into your shell you will need to enter"
-echo "a new login shell either by typing:"
+echo "Your OMG shell environment can be customized by editing '$OMGRC'."
 echo ""
-echo "    $ exec $(basename "$SHELL") -l"
-echo ""
-echo "Or restart your login shell by opening a new tab in your terminal."
-echo "Once your shell is ready you will need to allow the source tree's"
-echo "direnv configuration to modify your shell by running:"
+echo "You will need to allow the source tree's direnv configuration to modify your"
+echo "shell by running:"
 echo ""
 echo "    $ direnv allow"
 echo ""
@@ -204,4 +201,4 @@ echo "You can customize the editor by editing your user configuration at:"
 echo ""
 echo "    $OMGMACS_CONFIG"
 echo ""
-echo "Fight for the user!"
+echo "Please restart your shell to continue."

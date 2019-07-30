@@ -13,7 +13,7 @@
   "Return the string representation of the omgmacs home directory.
 By default, this is set to the value of the `REAL_HOME` environment variable
 which is set by the binstub to start omgmacs."
-  (expand-file-name (concat-path (or (getenv "REAL_HOME") (getenv "HOME")) ".omg.d")))
+  (expand-file-name (concat-path (or (getenv "REAL_HOME") (getenv "HOME")) ".config" "omg")))
 
 (defun omg/banner-directory ()
   (concat-path spacemacs-private-directory "banners"))
