@@ -1,6 +1,6 @@
 # omgpkgs
 
-A collection of [Nix](https://nixos.org/nix/) package expressions and setup scripts for configuring your machine as a One More Game workstation.
+A collection of public [Nix](https://nixos.org/nix/) package expressions and setup scripts for configuring a machine as a One More Game workstation.
 
 ## Prerequisites
 
@@ -9,20 +9,6 @@ A collection of [Nix](https://nixos.org/nix/) package expressions and setup scri
 
 ## Usage
 
-Until this repository is publicly hosted, you'll need to clone it and run the setup script from your filesystem directly:
-
-1. Clone the repository
-    ```
-    $ git clone https://github.com/PlayOneMoreGame/omgpkgs.git
-    $ cd omgpkgs
-    ```
-
-1. Run the setup script to prepare your host machine
-    ```
-    $ bin/setup.sh
-    ```
-
-In the future when this repository is opened to the public:
     ```
     $ curl -fsSL https://raw.githubusercontent.com/PlayOneMoreGame/omgpkgs/master/bin/setup.sh | bash
     ```
@@ -61,7 +47,7 @@ In the future when this repository is opened to the public:
 
 Built packages can be tested on the host machine since Nix packages are isolated, immutable, and atomic by nature. Simply build your package(s) and interact with the output in the corresponding result symlinks.
 
-This repository also contains a `bin/setup.sh` script which installs the base development environment for all One More Game projects and, in the future, will be publicly hosted as part of our open source offerings and mod tooling. This script works on various platforms and can be tested through the use of Vagrant and VMWare Fusion.
+This repository also contains a `bin/setup.sh` script which installs the base development environment for all One More Game projects. This script works on various platforms and can be tested through the use of Vagrant and VMWare Fusion.
 
 You'll need to manually install Vagrant and VMWare Fusion. After installation, run the following script:
 

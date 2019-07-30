@@ -28,11 +28,11 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.vm.synced_folder ".", "/mnt/src"
 
-
   config.vm.provision "setup", type: "shell" do |p|
     p.inline = $setup
     p.privileged = false
   end
+
   config.vm.provision "test", type: "shell" do |p|
     p.inline = $test
     p.privileged = false
@@ -44,6 +44,4 @@ Vagrant.configure("2") do |config|
       v.vmx["memsize"] = "2048"
     end
   end
-
-  # omg todo: add additional distro support
 end
