@@ -162,6 +162,14 @@ after 'dotspacemacs/init', before layer configuration executes.
 This function is mostly useful for variables that need to be set before packages are
 loaded. If you are unsure, you should try in setting variables here, first."
   ;; Add configuration here
+  ;; (setq-default
+  ;;   ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
+  ;;   ;; quickly tweak the mode-line size to make separators look not too crappy.
+  ;;   dotspacemacs-default-font '("Source Code Pro"
+  ;;                                :size 28
+  ;;                                :weight normal
+  ;;                                :width normal
+  ;;                                :powerline-scale 1.1)))
   )
 
 (defun omg/user-config ()
