@@ -12,7 +12,6 @@ set -euo pipefail
 
 NIXSH="$HOME/.nix-profile/etc/profile.d/nix.sh"
 OMG_CONFIG_DIR="$HOME/.config/omg"
-OMGRC="$OMG_CONFIG_DIR/.omgrc"
 OMGMACS_CONFIG="$OMG_CONFIG_DIR/user-config.el"
 OS=""
 
@@ -124,26 +123,15 @@ fi
 
 mkdir -p "$OMG_CONFIG_DIR"
 
-if [ ! -f "$OMGRC" ]; then
-  echo "Writing '$OMGRC'..."
-  cat << EOF >> "$OMGRC"
-# Load direnv
-case "\$SHELL" in
-  */bash)
-    eval "\$(direnv hook bash)"
-    ;;
-  */zsh)
-    eval "\$(direnv hook zsh)"
-    ;;
-  *)
-    ;;
-esac
-EOF
+if [ -f "$HOME/.bashrc" ]; then
+  if ! grep 'eval "$(direnv hook bash)"' "$HOME/.bashrc" &> /dev/null; then
+    echo "eval \"\$(direnv hook bash)\"" >> "$HOME/.bashrc"
+  fi
 fi
 
-if [ -f "$HOME/.profile" ]; then
-  if ! grep "source \"$HOME/.config/omg/.omgrc\"" "$HOME/.profile" &> /dev/null; then
-    echo "source \"$HOME/.config/omg/.omgrc\"" >> "$HOME/.profile"
+if [ -f "$HOME/.zshrc" ]; then
+  if ! grep 'eval "$(direnv hook zsh)"' "$HOME/.zshrc" &> /dev/null; then
+    echo "eval \"\$(direnv hook zsh)\"" >> "$HOME/.zshrc"
   fi
 fi
 
@@ -191,10 +179,10 @@ echo "***************"
 echo "Setup complete!"
 echo "***************"
 echo ""
-echo "Your OMG shell environment can be customized by editing '$OMGRC'."
+echo "Please restart your shell before continuing."
 echo ""
-echo "You will need to allow the source tree's direnv configuration to modify your"
-echo "shell by running:"
+echo "Once your shell has been restarted, you will need to allow the source tree's"
+echo "direnv configuration to modify your shell by running:"
 echo ""
 echo "    $ direnv allow"
 echo ""
@@ -208,5 +196,3 @@ echo ""
 echo "You can customize the editor by editing your user configuration at:"
 echo ""
 echo "    $OMGMACS_CONFIG"
-echo ""
-echo "Please restart your shell to continue."
