@@ -381,24 +381,33 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (editorconfig-mode 1)
+
+  ;; Clojure
   (setq
     cider-ns-refresh-before-fn "integrant.repl/suspend"
     cider-ns-refresh-after-fn "integrant.repl/resume"
     cider-default-cljs-repl 'shadow)
+  (add-hook 'clojure-mode-hook
+    (lambda () (add-hook 'before-save-hook 'cider-format-buffer nil 'local)))
+  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+
+  ;; Csharp hotkeys
+  (setq
+    omnisharp-cache-directory (concat-path spacemacs-cache-directory "omnisharp"))
+  (spacemacs/set-leader-keys-for-major-mode 'csharp-mode
+    "=" 'omnisharp-code-format-entire-file)
+  (add-hook 'omnisharp-mode-hook
+    (lambda () (add-hook 'before-save-hook 'omnisharp-code-format-entire-file nil 'local)))
+
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar .t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-hook 'js2-mode-hook 'prettier-js-mode)
   (add-hook 'scss-mode-hook 'prettier-js-mode)
-  (eval-after-load 'web-mode
-    '(add-hook 'web-mode-hook
-               (lambda ()
-                 (add-hook 'before-save-hook 'web-beautify-html-buffer t t))))
+  (add-hook 'web-mode-hook
+    (lambda () (add-hook 'before-save-hook 'web-beautify-html-buffer t t)))
   (add-hook 'terraform-mode-hook
-            (lambda ()
-              (set-fill-column 100)))
-  (add-hook 'clojure-mode-hook #'aggressive-indent-mode)
+    (lambda () (set-fill-column 100)))
   (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode)
-  (add-hook 'terraform-mode-hook 'ruler-mode)
 
   ;;(diff-hl-flydiff-mode '(:global t))
   (use-package diff-hl
