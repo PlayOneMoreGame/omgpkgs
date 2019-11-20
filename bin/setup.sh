@@ -12,7 +12,6 @@ set -euo pipefail
 
 NIXSH="$HOME/.nix-profile/etc/profile.d/nix.sh"
 OMG_CONFIG_DIR="$HOME/.config/omg"
-OMGMACS_CONFIG="$OMG_CONFIG_DIR/user-config.el"
 OS=""
 
 if [ -f /etc/os-release ]; then
@@ -137,45 +136,6 @@ if [ -f "$HOME/.zshrc" ]; then
   fi
 fi
 
-if [ ! -f "$OMGMACS_CONFIG" ]; then
-  mkdir -p "$(dirname "$OMGMACS_CONFIG")"
-  cat << EOF >> "$OMGMACS_CONFIG"
-;; -*- mode: emacs-lisp -*-
-;; This file is loaded by OMGmacs at startup.
-;; It must be stored at '\$HOME/.config/omg/user-config.el'.
-
-(defun omg/user-init ()
-  "Initialization function for user code.
-It is called at the end of 'dotspacemacs/user-init' which is called immediately
-after 'dotspacemacs/init', before layer configuration executes.
-
-This function is mostly useful for variables that need to be set before packages are
-loaded. If you are unsure, you should try in setting variables here, first."
-  ;; Add configuration here
-  ;; (setq-default
-  ;;   ;; Default font, or prioritized list of fonts. 'powerline-scale' allows to
-  ;;   ;; quickly tweak the mode-line size to make separators look not too crappy.
-  ;;   dotspacemacs-default-font '("Source Code Pro"
-  ;;                                :size 28
-  ;;                                :weight normal
-  ;;                                :width normal
-  ;;                                :powerline-scale 1.1))
-  )
-
-(defun omg/user-config ()
-  "Configuration function for user code.
-This function is called at the end of 'dotspacemacs/user-config' which is called
-at the very end of Spacemacs initialization after layers configuration.
-
-This is the place where most of your configurations should be done. Unless it is
-explicitly specified that a variable should be set before a package is loaded,
-you should place your code here."
-  ;; Add configuration here
-  )
-
-EOF
-fi
-
 echo ""
 echo "***************"
 echo "Setup complete!"
@@ -190,11 +150,3 @@ echo "    $ direnv allow"
 echo ""
 echo "Direnv will populate your shell environment and modify it's path to include"
 echo "all of the tools you will need to work with the OMG development environment."
-echo "A customized Emacs editor based on Spacemacs will be installed as part of"
-echo "this development environment. It can started with:"
-echo ""
-echo "    $ omge"
-echo ""
-echo "You can customize the editor by editing your user configuration at:"
-echo ""
-echo "    $OMGMACS_CONFIG"
