@@ -1,16 +1,8 @@
-let
-  # Look here for information about how to generate `nixpkgs-version.json`.
-  #  → https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
-  pinned-version = builtins.fromJSON (builtins.readFile ./.nixpkgs-version.json);
-  pinned-nixpkgs = import (builtins.fetchGit {
-    inherit (pinned-version.nixpkgs) url rev;
-    ref = "nixos-unstable";
-  }) {};
-in
+{ pkgs ? import <nixpkgs> {} }:
 
-{ pkgs ? pinned-nixpkgs }:
 with pkgs;
 {
+  dotnetCore = recurseIntoAttrs (callPackage ./development/compilers/dotnet { });
   nodePackages_10_x = recurseIntoAttrs (callPackage ./development/node-packages/default-v10.nix {
     nodejs = pkgs.nodejs-10_x;
   });

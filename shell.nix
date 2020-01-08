@@ -6,9 +6,10 @@ let
     inherit (pinnedVersions.nixpkgs) url rev;
     ref = "master";
   }) { config = { allowUnfree = true; };};
+  omgPkgs = import ./default.nix { pkgs = pinnedPkgs; };
 in
 
-{ pkgs ? pinnedPkgs }:
+{ pkgs ? pinnedPkgs // omgPkgs }:
 with pkgs;
 mkShell {
   buildInputs = [
