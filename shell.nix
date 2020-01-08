@@ -13,6 +13,7 @@ in
 with pkgs;
 mkShell {
   buildInputs = [
+    cacert
     direnv
     dos2unix
     git
