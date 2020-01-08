@@ -1,2 +1,10 @@
+# Nix
+.cache
+.local
+.direnv
+
 # Vagrant
 .vagrant
+
+# vscode xyz.local-history extension
+.history/
