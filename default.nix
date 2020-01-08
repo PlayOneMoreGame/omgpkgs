@@ -7,8 +7,6 @@ with pkgs;
     nodejs = pkgs.nodejs-10_x;
   });
   nodePackages = nodePackages_10_x;
-  # jw todo: include scss-lint-reporter-checkstyle to omgmacs
-  omgmacs = callPackage ./applications/editors/omgmacs {};
   python3Packages = recurseIntoAttrs (
     python3Packages.callPackage ./development/python-packages {}
   );
