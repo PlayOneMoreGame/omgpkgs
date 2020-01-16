@@ -25,7 +25,6 @@ fi
 SCRIPT
 
 Vagrant.configure("2") do |config|
-  config.ssh.forward_agent = true
   config.vm.synced_folder ".", "/mnt/src"
 
   config.vm.provision "setup", type: "shell" do |p|

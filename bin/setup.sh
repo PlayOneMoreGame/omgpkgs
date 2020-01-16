@@ -33,7 +33,7 @@ else
   OS=$(uname -s)
 fi
 
-function nix_installed {
+function nix_installed() {
   if [ -f "$NIXSH" ]; then
     return 0
   else
@@ -41,20 +41,20 @@ function nix_installed {
   fi
 }
 
-function source_nix {
+function source_nix() {
   # shellcheck disable=2034
   MANPATH="" # Required to be set to a value for sourcing the profile below
   # shellcheck disable=1090
   source "$NIXSH"
 }
 
-function setup_debian {
+function setup_debian() {
   sudo apt-get update
   sudo apt-get install -y curl
 }
 
-function setup_linux {
-  if command -v curl &> /dev/null ; then
+function setup_linux() {
+  if command -v curl &>/dev/null; then
     return 0
   fi
   local OS=""
@@ -79,33 +79,28 @@ function setup_linux {
     OS=$(uname -s)
   fi
   case "${OS,,}" in
-    ubuntu*|debian*)
-      setup_debian
-      ;;
-    *)
-      echo "Unsupported Linux distribution: $OS"
-      echo "Manually install 'curl' and ensure it is on your path and try again."
-      exit 1
-      ;;
+  ubuntu* | debian*)
+    setup_debian
+    ;;
+  *)
+    echo "Unsupported Linux distribution: $OS"
+    echo "Manually install 'curl' and ensure it is on your path and try again."
+    exit 1
+    ;;
   esac
 }
 
 # Perform additional OS-specific setup
 case "$OSTYPE" in
-  darwin*)
-    ;;
-
-  linux*)
-    setup_linux
-    ;;
-
-  msys*|cygwin*)
-    ;;
-
-  *)
-    echo >&2 "Unknown OS: $OSTYPE"
-    exit 1
-    ;;
+darwin*) ;;
+linux*)
+  setup_linux
+  ;;
+msys* | cygwin*) ;;
+*)
+  echo >&2 "Unknown OS: $OSTYPE"
+  exit 1
+  ;;
 esac
 
 if ! nix_installed; then
@@ -115,24 +110,34 @@ fi
 
 source_nix
 
-if ! command direnv &> /dev/null; then
+if ! command direnv &>/dev/null; then
   echo "Installing direnv..."
   nix-env -i direnv
+fi
+
+if ! command git &>/dev/null; then
+  echo "Installing git..."
+  nix-env -i git
+fi
+
+if ! command git-lfs &>/dev/null; then
+  echo "Installing git-lfs..."
+  nix-env -i git-lfs
 fi
 
 mkdir -p "$OMG_CONFIG_DIR"
 
 if [ -f "$HOME/.bashrc" ]; then
-  if ! grep 'eval "$(direnv hook bash)"' "$HOME/.bashrc" &> /dev/null; then
-    echo "" >> "$HOME/.bashrc"
-    echo "eval \"\$(direnv hook bash)\"" >> "$HOME/.bashrc"
+  if ! grep 'eval "$(direnv hook bash)"' "$HOME/.bashrc" &>/dev/null; then
+    echo "" >>"$HOME/.bashrc"
+    echo "eval \"\$(direnv hook bash)\"" >>"$HOME/.bashrc"
   fi
 fi
 
 if [ -f "$HOME/.zshrc" ]; then
-  if ! grep 'eval "$(direnv hook zsh)"' "$HOME/.zshrc" &> /dev/null; then
-    echo "" >> "$HOME/.zshrc"
-    echo "eval \"\$(direnv hook zsh)\"" >> "$HOME/.zshrc"
+  if ! grep 'eval "$(direnv hook zsh)"' "$HOME/.zshrc" &>/dev/null; then
+    echo "" >>"$HOME/.zshrc"
+    echo "eval \"\$(direnv hook zsh)\"" >>"$HOME/.zshrc"
   fi
 fi
 

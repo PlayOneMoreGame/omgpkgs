@@ -6,6 +6,6 @@
 # run the setup script in the virtual machine(s), test the state of the virtual
 # machine(s), and then cleanup after the test.
 
-vagrant destroy -f &&                           \
-  vagrant up --provider vmware_fusion &&        \
+vagrant destroy -f &&
+  vagrant up --provider vmware_fusion &&
   vagrant destroy -f
