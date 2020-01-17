@@ -2,6 +2,10 @@ steps:
   - label: "build"
     command: "nix-build"
     branches: "!master"
+    agents:
+      os: linux
   - label: "build-push"
     command: "nix-build | cachix push omg"
     branches: "master"
+    agents:
+      os: linux
