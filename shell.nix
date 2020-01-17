@@ -3,8 +3,7 @@ let
   #  → https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
   pinnedVersions = builtins.fromJSON (builtins.readFile ./.nixpkgs-version.json);
   pinnedPkgs = import (builtins.fetchGit {
-    inherit (pinnedVersions.nixpkgs) url rev;
-    ref = "master";
+    inherit (pinnedVersions.nixpkgs) url rev ref;
   }) { config = { allowUnfree = true; };};
   omgPkgs = import ./default.nix { pkgs = pinnedPkgs; };
 in
