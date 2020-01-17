@@ -1,4 +1,5 @@
 # omgpkgs
+[![Build status](https://badge.buildkite.com/f606c80f405a7f91393f5cc06e2b08ae7e021b418b234d3805.svg)](https://buildkite.com/one-more-game/omgpkgs)
 
 A collection of public [Nix](https://nixos.org/nix/) package expressions and setup scripts for configuring a machine as a One More Game workstation.
 
