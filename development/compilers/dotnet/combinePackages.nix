@@ -1,22 +1,20 @@
-{ cli
-, withRuntimes ? []
-, withSdks ? []
-}:
-  assert (builtins.length withRuntimes) != 0 || (builtins.length withSdks) != 0;
-  { stdenv }:
-  stdenv.mkDerivation rec {
+packages:
+{ buildEnv, lib }:
+let cli = builtins.head packages;
+in
+assert lib.assertMsg ((builtins.length packages) != 0)
+    ''You must include at least one package, e.g
+      `with dotnetCorePackages; combinePackages {
+          packages = [ sdk_3_0 aspnetcore_2_1 ];
+       };`'' ;
+  buildEnv {
     name = "dotnet-core-combined";
-
-    runtimes = withRuntimes;
-    sdks = withSdks;
-    inherit cli;
-
-    builder = ./combine-packages-builder.sh;
-
-    meta = with stdenv.lib; {
-      homepage = https://dotnet.github.io/;
-      description = ".NET Core combined package";
-      platforms = [ "x86_64-linux" "x86_64-darwin" ];
-      license = licenses.mit;
-    };
+    paths = packages;
+    pathsToLink = [ "/host" "/packs" "/sdk" "/shared" "/templates" ];
+    ignoreCollisions = true;
+    postBuild = ''
+      cp ${cli}/dotnet $out/dotnet
+      mkdir $out/bin
+      ln -s $out/dotnet $out/bin/
+    '';
   }
