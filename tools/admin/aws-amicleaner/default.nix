@@ -1,7 +1,7 @@
-{ lib,
-  python3Packages,
-  argparse,
-  awscli,
+{ lib
+, python3Packages
+, argparse
+, pkgs
 }:
 
 python3Packages.buildPythonApplication rec {
@@ -15,7 +15,7 @@ python3Packages.buildPythonApplication rec {
 
   doCheck = false;
 
-  propagatedBuildInputs = with python3Packages; [
+  propagatedBuildInputs = with pkgs; with python3Packages; [
     argparse
     awscli
     blessings

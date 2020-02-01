@@ -2,6 +2,8 @@
 
 with pkgs;
 rec {
+  aws-amicleaner = callPackage ./tools/admin/aws-amicleaner { inherit (python3Packages) argparse; };
+
   dotnetCorePackages = recurseIntoAttrs (callPackage ./development/compilers/dotnet {});
 
   dotnet-sdk = dotnetCorePackages.sdk_2_1;
