@@ -33,14 +33,6 @@ else
   OS=$(uname -s)
 fi
 
-function nix_installed() {
-  if [ -f "$NIXSH" ]; then
-    return 0
-  else
-    return 1
-  fi
-}
-
 function source_nix() {
   # shellcheck disable=2034
   MANPATH="" # Required to be set to a value for sourcing the profile below
@@ -103,7 +95,8 @@ msys* | cygwin*) ;;
   ;;
 esac
 
-if ! nix_installed; then
+# Check if Nix is installed and if not, install for the current user
+if [ -f "$HOME/.nix-profile/bin/nix" ]; then
   echo "Installing Nix..."
   curl -fsSL https://nixos.org/nix/install | sh
 fi
