@@ -96,7 +96,7 @@ msys* | cygwin*) ;;
 esac
 
 # Check if Nix is installed and if not, install for the current user
-if [ -f "$HOME/.nix-profile/bin/nix" ]; then
+if [ ! -f "$HOME/.nix-profile/bin/nix" ]; then
   echo "Installing Nix..."
   curl -fsSL https://nixos.org/nix/install | sh
 fi
