@@ -21,17 +21,20 @@ A collection of public [Nix](https://nixos.org/nix/) package expressions and set
   * [NixPkgs Manual](https://nixos.org/nixpkgs/manual/) - A reference manual for all things Nix packaging. The manual includes sections with instructions for how to build packages for languages and tools which have their own packaging systems (ie. Python, Ruby, or Emacs)
 
 1. Clone the repository
+
     ```
     $ git clone https://github.com/PlayOneMoreGame/omgpkgs.git
     $ cd omgpkgs
     ```
 
 1. Run the setup script to prepare your host machine
+
    ```
    $ bin/setup.sh
    ```
 
 1. Modify what you'd like and then build the packages
+
    ```
    $ nix-build
    ```
