@@ -7,11 +7,13 @@
 #
 # This script is called without arguments and installs all prerequisite
 # software and OMGmacs (a customized Emacs/Spacemacs).
+#
+# shellcheck disable=SC1091
 
 set -euo pipefail
 
-NIXSH="$HOME/.nix-profile/etc/profile.d/nix.sh"
-OMG_CONFIG_DIR="$HOME/.config/omg"
+readonly NIXSH="$HOME/.nix-profile/etc/profile.d/nix.sh"
+readonly OMG_CONFIG_DIR="$HOME/.config/omg"
 OS=""
 
 if [ -f /etc/os-release ]; then
@@ -41,6 +43,8 @@ function source_nix() {
 }
 
 function setup_debian() {
+  # Disable interactive prompts from debian/ubuntu packages when upgrading apt
+  export DEBIAN_FRONTEND=noninteractive
   sudo apt-get update
   sudo apt-get install -y curl
 }
