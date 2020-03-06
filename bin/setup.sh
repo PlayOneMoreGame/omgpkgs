@@ -152,3 +152,10 @@ echo "    $ direnv allow"
 echo ""
 echo "Direnv will populate your shell environment and modify it's path to include"
 echo "all of the tools you will need to work with the OMG development environment."
+
+if [[ $(uname -r) =~ icrosoft ]]; then
+  echo ""
+  echo "IMPORTANT: You are running on WSL (Windows Subsytem for Linux), and so it"
+  echo "may be necessary to restart your WSL session using \`wsl.exe --shutdown\`"
+  echo "in order for changes to your \`.profile\` file to be sourced."
+fi
