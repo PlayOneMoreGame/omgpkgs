@@ -1,7 +1,4 @@
-{ pkgs,
-  nodejs,
-  stdenv
-}:
+{ pkgs, nodejs, stdenv }:
 
 import ./composition-v10.nix {
   inherit pkgs nodejs;

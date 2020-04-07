@@ -1,7 +1,5 @@
-{ stdenv,
-  buildGoPackage,
-  fetchFromGitHub,
-}:
+{ stdenv, buildGoPackage, fetchFromGitHub, }:
+
 buildGoPackage rec {
   name = "vault-openvpn";
   version = "1.9.1";

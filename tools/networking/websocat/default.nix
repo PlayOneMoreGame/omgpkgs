@@ -1,8 +1,5 @@
-{ stdenv,
-  rustPlatform,
-  fetchFromGitHub,
-  darwin
-}:
+{ stdenv, rustPlatform, fetchFromGitHub, darwin }:
+
 rustPlatform.buildRustPackage rec {
   name = "websocat";
   version = "1.4.0";
@@ -14,8 +11,8 @@ rustPlatform.buildRustPackage rec {
   };
   cargoSha256 = "02rh1gl2hm1xj69rdqm04xafzxxcn0mdr9qs61x6ydax3v6f1v03";
   doCheck = false;
-  buildInputs =
-    if !stdenv.isDarwin
-    then [] # jw todo: what is this for linux?
-    else [ darwin.Security ];
+  buildInputs = if !stdenv.isDarwin then
+    [ ] # jw todo: what is this for linux?
+  else
+    [ darwin.Security ];
 }

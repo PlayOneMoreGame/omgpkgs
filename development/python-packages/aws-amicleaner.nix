@@ -1,8 +1,4 @@
-{ lib,
-  python3Packages,
-  argparse,
-  awscli,
-}:
+{ lib, python3Packages, argparse, awscli, }:
 
 python3Packages.buildPythonApplication rec {
   pname = "aws-amicleaner";
