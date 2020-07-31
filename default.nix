@@ -28,6 +28,4 @@ with pkgs; rec {
     callPackage ./development/tools/scss-lint-reporter-checkstyle { };
 
   vault-openvpn = callPackage ./tools/security/vault-openvpn { };
-
-  websocat = callPackage ./tools/networking/websocat { };
 }
