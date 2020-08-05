@@ -21,6 +21,8 @@ with pkgs; rec {
 
   nodePackages = nodePackages_10_x;
 
+  nomad = (callPackage ./applications/networking/cluster/nomad { });
+
   python3Packages =
     recurseIntoAttrs (callPackage ./development/python-packages { });
 
