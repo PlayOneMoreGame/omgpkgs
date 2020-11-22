@@ -1,14 +1,26 @@
-#!/usr/bin/env bash
+#!/bin/sh
+# Git hooks must use "/bin/sh" to work with GitHub Desktop, but
+# this script has lots of "bash-isms".
 #
-# Runs after the source code checkout and prepares the
-# source tree before running the `pre-command` and
-# `command` hooks.
-
+# To solve the underlying issue:
+#
+#   pre-commit hook doesn't work when using #!/bin/bash on windows
+#   https://github.com/desktop/desktop/issues/5628#issuecomment-420988148
+#
+# we use scripting magic: use "/bin/sh" for the shebang, and then
+# detect whether the shell is bash and re-run if necessary.
+if [ -z "$BASH_VERSINFO" ]; then
+  exec "/bin/bash" "$0" "$@"
+fi
 set -euo pipefail
 
 #########################
 # Setup Git LFS
 #########################
+# Runs after the source code checkout and prepares the
+# source tree before running the `pre-command` and
+# `command` hooks.
 
+echo "--- Pulling Git-LFS"
 git lfs install
 git lfs pull
