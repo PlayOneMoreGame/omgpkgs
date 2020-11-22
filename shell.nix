@@ -17,6 +17,7 @@ mkShell {
     direnv
     dos2unix
     git
+    github-cli
     haskellPackages.ShellCheck
     nix-prefetch-git
     shfmt

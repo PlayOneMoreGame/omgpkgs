@@ -2,6 +2,7 @@
 .cache
 .local
 .direnv
+result
 
 # Vagrant
 .vagrant

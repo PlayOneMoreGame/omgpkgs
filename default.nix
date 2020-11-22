@@ -17,6 +17,8 @@ with pkgs; rec {
 
   dotnet-aspnetcore = dotnetCorePackages.aspnetcore_2_1;
 
+  github-cli = (callPackage ./development/tools/github-cli { });
+
   nodePackages_10_x = recurseIntoAttrs
     (callPackage ./development/node-packages/default-v10.nix {
       nodejs = pkgs.nodejs-10_x;
