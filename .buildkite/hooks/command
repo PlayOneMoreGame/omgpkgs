@@ -11,6 +11,10 @@ set -euo pipefail
 # Setup shell environment
 #########################
 
+# Set the NIX_PATH for our builder to the root user's profile. This is
+# the only user with a channel we have configured on our build workers.
+export NIX_PATH=nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos
+
 # The following 4 lines are functionally equivalent to running
 # `direnv allow` from an interactive shell.
 PROMPT_COMMAND=""
