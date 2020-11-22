@@ -1,10 +1,10 @@
 {
   "nixpkgs": {
-    "date": "2020-01-30T10:13:29+01:00",
+    "date": "2020-09-26T18:54:09-07:00",
     "fetchSubmodules": false,
     "ref": "nixos-unstable",
-    "rev": "8539d5f48f9de4ba428d2ca6687712db1d9cb2b7",
-    "sha256": "1hymj87ffvrwmml1mlpf6pyvrpa93gbgrir3cayxm483qlarab3f",
+    "rev": "84d74ae9c9cbed73274b8e4e00be14688ffc93fe",
+    "sha256": "0ww70kl08rpcsxb9xdx8m48vz41dpss4hh3vvsmswll35l158x0v",
     "url": "https://github.com/NixOS/nixpkgs-channels"
   }
 }
