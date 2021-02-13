@@ -35,4 +35,6 @@ with pkgs; rec {
     callPackage ./development/tools/scss-lint-reporter-checkstyle { };
 
   vault-openvpn = callPackage ./tools/security/vault-openvpn { };
+
+  unity-license-server = callPackage ./applications/networking/unity/license-server { };
 }
