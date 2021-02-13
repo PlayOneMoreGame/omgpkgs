@@ -2,7 +2,7 @@
 
 with pkgs; 
 stdenv.mkDerivation rec {
-  name = "unity-license-server-${version}";
+  name    = "Unity.Licensing.Server.linux-x64-v${version}";
   version = "1.8.0";
   dontStrip = true;
 
@@ -17,18 +17,17 @@ stdenv.mkDerivation rec {
   ];
 
   unpackPhase = ''
-    unzip $src/Unity.Licensing.Server.linux-x64-v1.8.0.zip
+    unzip $src/${name}.zip
   '';
 
   installPhase = ''
     mkdir -p $out/bin
-    cp -r ./Unity.Licensing.Server.linux-x64-v1.8.0/* $out/bin
+    cp -r ./${name}/* $out/bin
   '';
 
   meta = with lib; {
-    homepage = https://unity.com;
-    description = "Unity Linux License Server";
-    platforms = platforms.linux;
-    maintainers = with maintainers; [ makefu ];
+    homepage    = https://unity.com;
+    description = "${name}";
+    platforms   = platforms.linux;
   };
 }
