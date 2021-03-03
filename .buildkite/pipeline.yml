@@ -1,11 +1,19 @@
 steps:
-  - label: "build"
-    command: "nix-build"
+  - label: ":terraform: CI"
+    command: make tf-ci-apply
+    branches: master
+    concurrency_group: terraform/ci/omgpkgs
+    concurrency: 1
+    agents:
+      os: linux
+  - wait
+  - label: ":hammer: Build"
+    command: make build
     branches: "!master"
     agents:
       os: linux
-  - label: "build-push"
-    command: "nix-build | cachix push omg"
+  - label: ":feelsgood: Publish"
+    command: make publish
     branches: "master"
     agents:
       os: linux

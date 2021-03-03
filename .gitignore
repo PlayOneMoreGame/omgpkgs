@@ -9,3 +9,9 @@ result
 
 # vscode xyz.local-history extension
 .history/
+
+# Terraform
+.terraform
+*.tfstate*
+*.tfvars
+*.secrets
