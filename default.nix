@@ -13,6 +13,8 @@ with pkgs; rec {
 
   dotnet-sdk_3 = dotnetCorePackages.sdk_3_1;
 
+  dotnet-sdk_5 = dotnetCorePackages.sdk_5_0;
+
   dotnet-netcore = dotnetCorePackages.netcore_2_1;
 
   dotnet-aspnetcore = dotnetCorePackages.aspnetcore_2_1;

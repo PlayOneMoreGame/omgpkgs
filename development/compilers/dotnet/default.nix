@@ -81,11 +81,27 @@ in rec {
       "2w1i65ajfrxm05ijaiawiqb03yn8klz4q7k3p49f1gn5bcryz33m31045hd1h5s1g4djcwqkzv3xwqygp5k3qxwspih3dcjf2g6jsba";
   };
 
+  net_5_0 = buildNetCore {
+    version = "5.0.0";
+    sha512 = if stdenv.isLinux then
+      "d4d67df5ff5f6dde0d865a6e87559955bd57429df396cf7d05fe77f09e6220c67dc5e66439b1801ca4d301a62f81f666122bf4b623b31a46b861677dcafc62a4"
+    else
+      "eba97211e158a0c1c15b03a79b42027319d83456dc377a2513c32defb560cd43fcfa1e84154a43243b77ca6b454c4dbc32be4153f0ba9c954c7b1e69ab5d7c53";
+  };
+
   sdk_3_1 = buildNetCoreSdk {
     version = "3.1.101";
     sha512 = if stdenv.isLinux then
       "eeee75323be762c329176d5856ec2ecfd16f06607965614df006730ed648a5b5d12ac7fd1942fe37cfc97e3013e796ef278e7c7bc4f32b8680585c4884a8a6a1"
     else
       "1bs0p7jm5gaarc4ss6zfakzw03g0hf8vshlvjpdnxj9mjhssk45gv6h2jlamfkhb0w1a0i1y7j86w9haamwq62d3crg7dskdk76a25j";
+  };
+
+  sdk_5_0 = buildNetCoreSdk {
+    version = "5.0.100";
+    sha512 = if stdenv.isLinux then
+      "bec37bfb327c45cc01fd843ef93b22b556f753b04724bba501622df124e7e144c303a4d7e931b5dbadbd4f7b39e5adb8f601cb6293e317ad46d8fe7d52aa9a09"
+    else
+      "69ccc7c686ac06f6c658d118f59cf1a0e7284b4570375dd88d3e3043098e311745922301f2650d159624d09c4d39a1f3cbdd5daee0e408eef915de839e3bce8f";
   };
 }
