@@ -1,8 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
 with pkgs; rec {
-  aws-amicleaner = with python3Packages;
-    callPackage ./development/tools/aws-amicleaner { inherit argparse awscli; };
+  # aws-amicleaner = with python3Packages;
+  #   callPackage ./development/tools/aws-amicleaner { inherit argparse awscli; };
 
   dotnetCorePackages =
     recurseIntoAttrs (callPackage ./development/compilers/dotnet { });

@@ -1,9 +1,8 @@
 {
   "nixpkgs": {
-    "date": "2020-09-26T18:54:09-07:00",
-    "fetchSubmodules": false,
+    "date": "2021-04-24T19:12:10+02:00",
     "ref": "nixpkgs-unstable",
-    "rev": "2a058487cb7a50e7650f1657ee0151a19c59ec3b",
+    "rev": "fc98e85759e93d3041026c91150f4303d706f272",
     "url": "https://github.com/NixOS/nixpkgs"
   }
 }
