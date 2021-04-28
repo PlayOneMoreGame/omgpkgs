@@ -4,21 +4,6 @@ with pkgs; rec {
   # aws-amicleaner = with python3Packages;
   #   callPackage ./development/tools/aws-amicleaner { inherit argparse awscli; };
 
-  dotnetCorePackages =
-    recurseIntoAttrs (callPackage ./development/compilers/dotnet { });
-
-  dotnet-sdk = dotnetCorePackages.sdk_2_1;
-
-  dotnet-sdk_2 = dotnetCorePackages.sdk_2_1;
-
-  dotnet-sdk_3 = dotnetCorePackages.sdk_3_1;
-
-  dotnet-sdk_5 = dotnetCorePackages.sdk_5_0;
-
-  dotnet-netcore = dotnetCorePackages.netcore_2_1;
-
-  dotnet-aspnetcore = dotnetCorePackages.aspnetcore_2_1;
-
   github-cli = (callPackage ./development/tools/github-cli { });
 
   nodePackages_10_x = recurseIntoAttrs
