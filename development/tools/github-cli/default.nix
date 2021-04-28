@@ -1,4 +1,4 @@
-{ pkgs, stdenv, buildGoModule, fetchFromGitHub }:
+{ pkgs, lib, buildGoModule, fetchFromGitHub }:
 
 buildGoModule rec {
   pname = "github-cli";
@@ -17,7 +17,7 @@ buildGoModule rec {
   vendorSha256 = "0bkd2ndda6w8pdpvw8hhlb60g8r6gbyymgfb69dvanw5i5shsp5q";
   modSha256 = "1k0gvck9j7qkav8alf7iq5jfza2mhnwgfq11dv0chcafpxscpivq";
 
-  meta = with stdenv.lib; {
+  meta = with lib; {
     homepage = "https://github.com/cli/cli/";
     description = "GitHub’s official command line tool";
     platforms = platforms.linux ++ platforms.darwin;
