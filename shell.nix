@@ -21,6 +21,6 @@ mkShell {
     haskellPackages.ShellCheck
     nix-prefetch-git
     shfmt
-    terraform_0_15
+    terraform_1_0
   ];
 }
