@@ -16,6 +16,6 @@ provider "buildkite" {
 }
 
 provider "github" {
-  token        = data.vault_generic_secret.ci.data["github_token"]
-  organization = "PlayOneMoreGame"
+  token = data.vault_generic_secret.ci.data["github_token"]
+  owner = "PlayOneMoreGame"
 }
