@@ -1,8 +1,13 @@
 {
   "nixpkgs": {
-    "date": "2021-04-24T19:12:10+02:00",
-    "ref": "nixpkgs-unstable",
-    "rev": "fc98e85759e93d3041026c91150f4303d706f272",
+    "date": "2021-07-08T15:09:28-03:00",
+    "deepClone": false,
+    "fetchSubmodules": false,
+    "leaveDotGit": false,
+    "path": "/nix/store/0qmvspns8bh1yfv8rg21pnagr1f74r6n-nixpkgs",
+    "ref": "refs/heads/nixpkgs-unstable",
+    "rev": "4c0834929cafb7478a5e82616d484578a80a3e41",
+    "sha256": "1p85z1a9nwf5k3c6i6kybcfh87p68ga37qdfjdsabf4qqj614yaz",
     "url": "https://github.com/NixOS/nixpkgs"
   }
 }
