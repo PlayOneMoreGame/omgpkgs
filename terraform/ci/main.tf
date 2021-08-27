@@ -14,19 +14,23 @@ terraform {
 ###############################################################################
 
 data "terraform_remote_state" "buildkite" {
-  backend = "consul"
+  backend = "azurerm"
 
   config = {
-    path = "terraform/services/buildkite"
-    lock = true
+    resource_group_name  = "rg-tf-root"
+    storage_account_name = "omgtfroot"
+    container_name       = "tfstate"
+    key                  = "core-infrastructure.services.buildkite.tfstate"
   }
 }
 
 data "terraform_remote_state" "github" {
-  backend = "consul"
+  backend = "azurerm"
 
   config = {
-    path = "terraform/services/github"
-    lock = true
+    resource_group_name  = "rg-tf-root"
+    storage_account_name = "omgtfroot"
+    container_name       = "tfstate"
+    key                  = "core-infrastructure.services.github.tfstate"
   }
 }
