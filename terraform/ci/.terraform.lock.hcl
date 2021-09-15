@@ -6,6 +6,7 @@ provider "registry.terraform.io/hashicorp/vault" {
   constraints = "~> 2.16"
   hashes = [
     "h1:GC94w8sqbcTwbF8cXgkQs+AuERsyOrtET+1cxSenoXg=",
+    "h1:WZVCWGQb21qHhBByraN2ZNVSax4HyoYHboAXC0yIoUk=",
     "zh:02c456b9b7b61a57e908dc7cb0abbc12c43ec063d59d03485717baef6977ada9",
     "zh:4292f6a32caf230db4224f126d9c4d3285bdc9eaf8cbb8163bf0513f944b1b77",
     "zh:495dbb731826ce320e2920f4c526335d98fbdb4fed1354ef2426a81e88668db3",
@@ -24,6 +25,7 @@ provider "registry.terraform.io/integrations/github" {
   version     = "4.12.1"
   constraints = "~> 4.1"
   hashes = [
+    "h1:QpcHj8PVfd336f71aaSW4LhxoVRdkGBfqHNHbevGfjU=",
     "h1:dm/OFvPiQ69v1WkCip6uevla0VwXTyrcf4u/G4JcMMY=",
     "zh:00d79526ce1e2e6eca41610f626223c1f5ca2923e26813639160ad4d1c808171",
     "zh:3d623090280e36c55297d9a03e06b9a68c54b60a313223cbc075d788beba02f0",
@@ -45,6 +47,7 @@ provider "registry.terraform.io/jradtilbrook/buildkite" {
   version     = "0.0.15"
   constraints = "0.0.15"
   hashes = [
+    "h1:20xp09Cs3tYnCF9S+WF3CNF+F11hCpkmPAHZlawN3GQ=",
     "h1:TRfKkG88CSVmPE0ce/xiWpx44M9qW80heox3qAkRmzE=",
     "zh:02a824ed90433b5d7243a1fc20c0884c0a2df7ec409812f0ead3deff3fc68fab",
     "zh:2d297789890bad6cf627b607fee8766c43cdb82ec31651bb7fc1bcca88e4899d",
