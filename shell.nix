@@ -13,6 +13,7 @@ in { pkgs ? pinnedPkgs // omgPkgs }:
 with pkgs;
 mkShell {
   buildInputs = [
+    azure-cli
     cacert
     direnv
     dos2unix

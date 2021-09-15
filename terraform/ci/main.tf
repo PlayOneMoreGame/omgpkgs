@@ -3,9 +3,11 @@
 # Proprietary and confidential
 
 terraform {
-  backend "consul" {
-    path = "terraform/ci/omgpkgs"
-    lock = true
+  backend "azurerm" {
+    resource_group_name  = "rg-tf-root"
+    storage_account_name = "omgtfroot"
+    container_name       = "tfstate"
+    key                  = "omgpkgs.ci.tfstate"
   }
 }
 
