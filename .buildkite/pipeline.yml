@@ -5,15 +5,18 @@ steps:
     concurrency_group: terraform/ci/omgpkgs
     concurrency: 1
     agents:
+      hardware_env: dev
       os: linux
   - wait
   - label: ":hammer: Build"
     command: make build
     branches: "!master"
     agents:
+      hardware_env: dev
       os: linux
   - label: ":feelsgood: Publish"
     command: make publish
     branches: "master"
     agents:
+      hardware_env: dev
       os: linux
