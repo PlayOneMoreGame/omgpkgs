@@ -1,27 +1,21 @@
-{ pkgs ? import <nixpkgs> { } }:
+#########################################################################
+#
+#                 -- Generated with omgcmd --
+#      (do not edit unless you know what you're doing)
+#
+#########################################################################
 
-with pkgs; rec {
-  # aws-amicleaner = with python3Packages;
-  #   callPackage ./development/tools/aws-amicleaner { inherit argparse awscli; };
+let
+  # Look here for information about how to generate `nixpkgs-version.json`.
+  #  → https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
+  pinnedVersions =
+    builtins.fromJSON (builtins.readFile ./.nixpkgs-version.json);
+  pinnedNixpkgs = import
+    (builtins.fetchGit { inherit (pinnedVersions.nixpkgs) url rev ref; }) {
+      config = { allowUnfree = true; };
+    };
+  pinnedOmgpkgs = import
+    (builtins.fetchGit { inherit (pinnedVersions.omgpkgs) url rev ref; }) {};
 
-  github-cli = (callPackage ./development/tools/github-cli { });
-
-  nodePackages_10_x = recurseIntoAttrs
-    (callPackage ./development/node-packages/default-v10.nix {
-      nodejs = pkgs.nodejs-10_x;
-    });
-
-  nodePackages = nodePackages_10_x;
-
-  nomad = (callPackage ./applications/networking/cluster/nomad { });
-
-  python3Packages =
-    recurseIntoAttrs (callPackage ./development/python-packages { });
-
-  scss-lint-reporter-checkstyle =
-    callPackage ./development/tools/scss-lint-reporter-checkstyle { };
-
-  vault-openvpn = callPackage ./tools/security/vault-openvpn { };
-
-  unity-license-server = callPackage ./applications/networking/unity/license-server { };
-}
+  # This allows overriding pkgs by passing `--arg pkgs ...`
+in { pkgs ? pinnedNixpkgs }: pkgs
