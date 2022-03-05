@@ -1,27 +1,35 @@
-let
-  # Look here for information about how to generate `nixpkgs-version.json`.
-  #  → https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs
-  pinnedVersions =
-    builtins.fromJSON (builtins.readFile ./.nixpkgs-version.json);
-  pinnedPkgs = import
-    (builtins.fetchGit { inherit (pinnedVersions.nixpkgs) url rev ref; }) {
-      config = { allowUnfree = true; };
-    };
-  omgPkgs = import ./default.nix { pkgs = pinnedPkgs; };
+#########################################################################
+#
+#                 -- Generated with omgcmd --
+#      (do not edit unless you know what you're doing)
+#
+#########################################################################
 
-in { pkgs ? pinnedPkgs // omgPkgs }:
+{ pkgs ? import ./default.nix { } }:
 with pkgs;
 mkShell {
   buildInputs = [
-    azure-cli
+    bash
     cacert
+    consul
+    curl
     direnv
     dos2unix
     git
     github-cli
+    gnumake
+    go
     haskellPackages.ShellCheck
+    jq
     nix-prefetch-git
+    nixfmt
+    openssh
+    packer
+    (python3.withPackages (ps: [ ps.autopep8 ]))
     shfmt
-    terraform_1_0
+    terraform_1
+    vault
+    which
+    wget
   ];
 }
